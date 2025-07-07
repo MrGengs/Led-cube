@@ -31,6 +31,6 @@
             });
         });
 
-        document.querySelectorAll('.feature-card, .product-card').forEach(card => {
+        document.querySelectorAll('.feature-card, .product-card, .activity-card').forEach(card => {
             observer.observe(card);
         });
