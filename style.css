@@ -83,6 +83,7 @@
         .hero-content {
             z-index: 2;
             position: relative;
+            background: url('assets/bg.png') center/cover no-repeat;
         }
 
         .hero h1 {
