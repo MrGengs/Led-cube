@@ -216,6 +216,50 @@ header.scrolled .nav-links a {
   width: 100%;
 }
 
+/* LED Text Animation */
+.led-text {
+  position: relative;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rgbWave 5s linear infinite, blink 1s step-end infinite;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  padding: 0 5px;
+}
+
+@keyframes rgbWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Typing cursor effect */
+.led-text::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+.led-text.typing::after {
+  animation: blink 0.7s step-end infinite;
+}
+
+.led-text.complete::after {
+  display: none;
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -497,6 +541,29 @@ section {
   color: #1e40af;
 }
 
+.about-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.office-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
 .feature-icon {
   margin-bottom: 1rem;
   overflow: hidden;
@@ -725,8 +792,69 @@ footer p:last-child {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 
+/* Vision Section */
+#vision {
+  padding: 80px 0;
+}
+
+#vision .about-content {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+#vision .about-text {
+  max-width: 100%;
+}
+
+#vision strong {
+  display: block;
+  color: #1e40af;
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+#vision ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+#vision li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+#vision li:before {
+  content: "•";
+  color: #3b82f6;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  #vision {
+    padding: 40px 0;
+  }
+  
+  #vision .about-content {
+    padding: 25px;
+  }
+  
+  #vision strong {
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0.5rem;
+  }
+  
+  #vision li {
+    padding-left: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
   .mobile-menu-toggle {
     display: flex;
   }

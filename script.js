@@ -169,15 +169,20 @@ document.querySelector(".cta-button")?.addEventListener("click", function (e) {
 });
 
 // Add typing effect to hero title
-function typeWriter(element, text, speed = 100) {
+function typeWriter(element, text, speed = 100, onComplete = () => {}) {
   let i = 0;
-  element.innerHTML = "";
+  element.textContent = "";
+  element.classList.add('typing');
 
   function type() {
     if (i < text.length) {
-      element.innerHTML += text.charAt(i);
+      element.textContent += text.charAt(i);
       i++;
       setTimeout(type, speed);
+    } else {
+      element.classList.remove('typing');
+      element.classList.add('complete');
+      onComplete();
     }
   }
 
@@ -187,11 +192,22 @@ function typeWriter(element, text, speed = 100) {
 // Initialize typing effect when page loads
 document.addEventListener("DOMContentLoaded", () => {
   const heroTitle = document.querySelector(".hero-content h1");
-  if (heroTitle) {
-    const originalText = heroTitle.textContent;
-    setTimeout(() => {
-      typeWriter(heroTitle, originalText, 150);
-    }, 500);
+  const voluxText = document.querySelector(".volux-text");
+  const ledText = document.querySelector(".led-text");
+  const cubeText = document.querySelector(".cube-text");
+  
+  if (heroTitle && voluxText && ledText && cubeText) {
+    // First type "Volux"
+    typeWriter(voluxText, 'Volux ', 100, () => {
+      // Then type "LED" with the special effect
+      typeWriter(ledText, 'LED', 150, () => {
+        // After LED is typed, add the RGB animation class
+        ledText.classList.add('rgb-animation');
+        
+        // Then type " Cube" after the LED text
+        typeWriter(cubeText, ' Cube', 100);
+      });
+    });
   }
 });
 
