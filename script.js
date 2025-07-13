@@ -12,27 +12,15 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Add scroll effect to header background - MODIFIED untuk selalu biru
-window.addEventListener("scroll", function () {
-  const header = document.querySelector("header");
-  if (window.scrollY > 100) {
-    header.style.background = "rgba(59, 130, 246, 0.98)"; // Biru dengan opacity
-  } else {
-    header.style.background = "rgba(59, 130, 246, 0.95)"; // Biru dengan opacity
-  }
-});
-
-// Navbar scroll effect - MODIFIED untuk selalu biru
+// Navbar scroll effect
 window.addEventListener("scroll", function () {
   const header = document.querySelector("header");
   const scrolled = window.scrollY > 50;
 
   if (scrolled) {
     header.classList.add("scrolled");
-    header.style.background = "rgba(59, 130, 246, 0.98)"; // Biru saat scrolled
   } else {
     header.classList.remove("scrolled");
-    header.style.background = "rgba(59, 130, 246, 0.95)"; // Biru default
   }
 });
 
@@ -916,8 +904,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Show lightbox
       lightbox.style.display = 'flex';
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
       
       // Force reflow to ensure the element is rendered before adding the class
       void lightbox.offsetHeight;
@@ -1010,9 +996,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
       lightbox.style.display = 'none';
       lightbox.innerHTML = '';
+      
+      // Restore body scrolling
       document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
       
       // Remove event listeners
       if (lightbox._keydownHandler) {
