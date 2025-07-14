@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir - Volux LED Cube</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary: #4a6cf7;
+            --primary-dark: #3b5bdb;
+            --text: #2d3748;
+            --text-light: #4a5568;
+            --text-lighter: #718096;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e0;
+            --bg-light: #f8fafc;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .career-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .career-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSgzMCkgc2NhbGUoMS40KSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .career-hero h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+
+        .career-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .career-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .job-listings {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .job-listings h2 {
+            text-align: center;
+            font-size: 2.25rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .job-listings p.subtitle {
+            text-align: center;
+            color: var(--text-lighter);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 0;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .job-title {
+            color: var(--primary);
+            font-size: 1.375rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .job-meta span {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-lighter);
+            font-size: 0.9rem;
+            background: var(--bg-light);
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+        }
+
+        .job-meta i {
+            margin-right: 0.35rem;
+            font-size: 0.9em;
+            color: var(--primary);
+        }
+
+        .job-description {
+            color: var(--text-light);
+            margin-bottom: 1.75rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .apply-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            width: fit-content;
+            margin-top: auto;
+        }
+
+        .apply-btn i {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 91, 219, 0.25);
+        }
+
+        .apply-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        .application-form-container {
+            padding: 5rem 0;
+        }
+
+        .application-form {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 3rem;
+            margin: 0 auto;
+            max-width: 800px;
+            display: none;
+            border: 1px solid var(--border);
+        }
+
+        .application-form h2 {
+            color: var(--text);
+            font-size: 1.875rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .application-form h2 span {
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #fff;
+            color: var(--text);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .file-input-container {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            width: 100%;
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1.25rem;
+            background: var(--bg-light);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+        }
+
+        .file-input-label:hover {
+            border-color: var(--primary);
+            background: rgba(74, 108, 247, 0.05);
+        }
+
+        .file-input-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-right: 1rem;
+        }
+
+        .file-input-btn {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .file-input-label:hover .file-input-btn {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 91, 219, 0.25);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-to-jobs {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 0.5rem 0.75rem 0.5rem 0;
+            border-radius: 6px;
+        }
+
+        .back-to-jobs:hover {
+            color: var(--primary-dark);
+            background: rgba(74, 108, 247, 0.05);
+        }
+
+        .back-to-jobs i {
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-jobs:hover i {
+            transform: translateX(-3px);
+        }
+
+        /* Job List Grid */
+        #job-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Status Message */
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            align-items: center;
+        }
+
+        .status-message.success {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+
+        .status-message.error {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            color: #b91c1c;
+        }
+
+        .status-message i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .submit-btn .loading {
+            margin: 0 0 0 0.75rem;
+            width: 1rem;
+            height: 1rem;
+            border-width: 2px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .career-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .job-listings h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .career-hero {
+                padding: 5rem 0 4rem;
+            }
+            
+            .career-hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            .career-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .career-container {
+                padding: 0 1.5rem;
+            }
+            
+            .job-listings {
+                padding: 3.5rem 0;
+            }
+            
+            .job-listings h2 {
+                font-size: 1.75rem;
+            }
+            
+            .job-card {
+                padding: 1.75rem;
+            }
+            
+            .application-form {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+            
+            .application-form h2 {
+                font-size: 1.625rem;
+            }
+            
+            .job-meta {
+                gap: 0.75rem;
+            }
+            
+            .job-meta span {
+                font-size: 0.85rem;
+                padding: 0.25rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .career-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .career-hero p {
+                font-size: 1rem;
+            }
+            
+            .job-listings h2 {
+                font-size: 1.5rem;
+            }
+            
+            #job-list {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .job-card {
+                padding: 1.5rem;
+            }
+            
+            .job-title {
+                font-size: 1.25rem;
+            }
+            
+            .job-description {
+                font-size: 0.95rem;
+            }
+            
+            .application-form {
+                padding: 1.75rem 1.25rem;
+                border-radius: 10px;
+            }
+            
+            .application-form h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            .file-input-label {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem 1rem;
+            }
+            
+            .file-input-text {
+                margin: 0 0 0.75rem;
+                white-space: normal;
+            }
+            
+            .file-input-btn {
+                width: 100%;
+                max-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <nav class="container">
+        <a href="index.html" class="logo-link"><img src="assets/logo.png" alt="Volux Logo" class="logo" /></a>
+        
+        <button class="hamburger" aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        
+        <ul class="nav-links">
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#vision">Visi dan Misi</a></li>
+          <li><a href="index.html#products">Product</a></li>
+          <li><a href="career.html" class="active">Career</a></li>
+          <li><a href="index.html#services">Layanan</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="career-hero">
+        <div class="career-container">
+            <h1>Join Our Team</h1>
+            <p>Be part of our mission to innovate and inspire through LED technology</p>
+        </div>
+    </section>
+
+    <!-- Job Listings -->
+    <section class="job-listings">
+        <div class="career-container">
+            <h2>Open Positions</h2>
+            <div id="job-list">
+                <!-- Job listings will be dynamically populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form (initially hidden) -->
+    <section class="application-form-container">
+        <div class="career-container">
+            <div id="application-form" class="application-form">
+                <a href="#" class="back-to-jobs" id="back-to-jobs">
+                    <i class="fas fa-arrow-left"></i> Back to Jobs
+                </a>
+                <h2>Apply for <span id="job-title"></span></h2>
+                <form id="job-application-form">
+                    <div class="form-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Upload CV/Resume (PDF, max 5MB)</label>
+                        <input type="file" id="resume" class="form-control" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cover-letter">Cover Letter</label>
+                        <textarea id="cover-letter" class="form-control" placeholder="Tell us why you're a great fit for this position..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <!-- Your existing footer content -->
+    </footer>
+
+    <script>
+        // Sample job data
+        const jobs = [
+            {
+                id: 1,
+                title: 'LED Hardware Engineer',
+                type: 'Full-time',
+                location: 'Bandung',
+                description: 'We are looking for an experienced LED Hardware Engineer to design and develop innovative LED solutions. You will be responsible for circuit design, prototyping, and testing of LED systems.'
+            },
+            {
+                id: 2,
+                title: 'Embedded Systems Developer',
+                type: 'Full-time',
+                location: 'Jakarta',
+                description: 'Join our team to develop embedded software for our LED control systems. Experience with microcontrollers and real-time systems is required.'
+            },
+            {
+                id: 3,
+                title: 'Graphic Designer',
+                type: 'Part-time',
+                location: 'Remote',
+                description: 'Create stunning visual content for our LED displays and marketing materials. Proficiency in Adobe Creative Suite and motion graphics is a plus.'
+            }
+        ];
+
+        // Populate job listings
+        const jobList = document.getElementById('job-list');
+        const applicationForm = document.getElementById('application-form');
+        const jobTitle = document.getElementById('job-title');
+        const jobApplicationForm = document.getElementById('job-application-form');
+        const backToJobs = document.getElementById('back-to-jobs');
+
+        function showJobListings() {
+            jobList.innerHTML = '';
+            applicationForm.style.display = 'none';
+            document.querySelector('.job-listings').style.display = 'block';
+            
+            jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card';
+                jobCard.innerHTML = `
+                    <h3 class="job-title">${job.title}</h3>
+                    <div class="job-meta">
+                        <span><i class="fas fa-briefcase"></i> ${job.type}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
+                    </div>
+                    <p class="job-description">${job.description}</p>
+                    <a href="#" class="apply-btn" data-job-id="${job.id}">Apply Now</a>
+                `;
+                jobList.appendChild(jobCard);
+            });
+
+            // Add event listeners to apply buttons
+            document.querySelectorAll('.apply-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const jobId = parseInt(button.getAttribute('data-job-id'));
+                    const job = jobs.find(j => j.id === jobId);
+                    showApplicationForm(job);
+                });
+            });
+        }
+
+        function showApplicationForm(job) {
+            document.querySelector('.job-listings').style.display = 'none';
+            applicationForm.style.display = 'block';
+            jobTitle.textContent = job.title;
+            window.scrollTo({ top: applicationForm.offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Back to jobs list
+        backToJobs.addEventListener('click', (e) => {
+            e.preventDefault();
+            showJobListings();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Form submission
+        jobApplicationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Thank you for your application! We will review your information and get back to you soon.');
+            jobApplicationForm.reset();
+            showJobListings();
+        });
+
+        // Initialize the page
+        showJobListings();
+    </script>
+</body>
+</html>
